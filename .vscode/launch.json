@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Gateway API",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": ["gateway.api:create_app", "--factory", "--host", "127.0.0.1", "--port", "8002", "--no-access-log"],
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Gateway Worker one event",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "gateway.worker",
+      "args": ["--once"],
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal"
+    }
+  ]
+}

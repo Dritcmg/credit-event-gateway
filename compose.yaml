@@ -1,0 +1,45 @@
+name: credit-event-gateway
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: gateway
+      POSTGRES_PASSWORD: ${GATEWAY_DB_PASSWORD:?Generate .env first}
+      POSTGRES_DB: credit_gateway
+    ports:
+      - "127.0.0.1:54362:5432"
+    volumes:
+      - gateway_pg:/var/lib/postgresql/data
+      - ./scripts/init-test-db.sql:/docker-entrypoint-initdb.d/01-test.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gateway -d credit_gateway"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  api:
+    build: .
+    env_file: .env
+    environment:
+      GATEWAY_DATABASE_URL: postgresql+psycopg://gateway:${GATEWAY_DB_PASSWORD:?Generate .env first}@postgres:5432/credit_gateway
+    command: ["sh", "-c", "alembic upgrade head && uvicorn gateway.api:create_app --factory --host 0.0.0.0 --port 8002 --no-access-log"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8002:8002"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8002/health/ready',timeout=2)"]
+      interval: 2s
+      timeout: 3s
+      retries: 20
+  worker:
+    build: .
+    env_file: .env
+    environment:
+      GATEWAY_DATABASE_URL: postgresql+psycopg://gateway:${GATEWAY_DB_PASSWORD:?Generate .env first}@postgres:5432/credit_gateway
+    command: ["python", "-m", "gateway.worker"]
+    depends_on:
+      api:
+        condition: service_healthy
+volumes:
+  gateway_pg:

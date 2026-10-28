@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-28T16:55:22.783879+00:00",
+  "status": "passed",
+  "python": "3.12.8",
+  "test_scope": "portable-sqlite-only",
+  "tests": {
+    "total": 49,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "checks": [
+    {
+      "check": "lint",
+      "exit_code": 0
+    },
+    {
+      "check": "format",
+      "exit_code": 0
+    },
+    {
+      "check": "pytest",
+      "exit_code": 0
+    },
+    {
+      "check": "dependency-audit",
+      "exit_code": 0
+    }
+  ],
+  "dependency_vulnerabilities": 0,
+  "source_sha256": "d35ceef0e36a7e240995cca9d1dc7e7a9ee346c04a36e2f46e40f3a992fbff26",
+  "data": "synthetic-only"
+}
