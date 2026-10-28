@@ -129,3 +129,7 @@ O projeto foi escolhido para demonstrar competências pedidas em uma vaga Python
 Este laboratório não implementa crédito real, Open Finance, verificações de identidade, conformidade regulatória, IAM gerenciado, retenção legal nem uma operação de produção. API keys e HMAC exigem rotação e armazenamento adequados antes de qualquer uso real. Rate limiting na borda, TLS, monitoramento contínuo e revisão de segurança são responsabilidades não implementadas aqui. PostgreSQL é a referência para concorrência; SQLite serve apenas à verificação portátil.
 
 Licença MIT. Leia [AI_ASSISTANCE.md](AI_ASSISTANCE.md) para compreender a autoria assistida e a finalidade de aprendizagem e validação externa.
+
+## Verificação remota da revisão publicada
+
+A [execução de CI](https://github.com/Dritcmg/credit-event-gateway/actions/runs/40731260856) aprovou **54 testes, sem falhas ou skips**, além de lint e auditoria de dependências. O gate inclui PostgreSQL real. O artefato remoto foi baixado e seu fingerprint conferido com a fonte local. Consulte [evidence/ci-verification.json](evidence/ci-verification.json) para a revisão exata e o resultado; o relatório local inicial tem escopo próprio.

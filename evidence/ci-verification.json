@@ -1,0 +1,16 @@
+{
+  "status": "PASSED",
+  "project": "credit-event-gateway",
+  "tested_source_commit": "a6f4a0ad62577df855408dcf4955f10c4bf11672",
+  "ci_url": "https://github.com/Dritcmg/credit-event-gateway/actions/runs/40731260856",
+  "tests": 54,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "postgres_verified": true,
+  "source_fingerprint_matches_local": true,
+  "source_fingerprint": "d35ceef0e36a7e240995cca9d1dc7e7a9ee346c04a36e2f46e40f3a992fbff26",
+  "dependency_audit": "PASSED",
+  "recorded_at": "2026-10-28T16:59:30.499240+00:00",
+  "scope": "Synthetic-data portfolio; AI assistance declared. CI artifact downloaded and inspected."
+}
